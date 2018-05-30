@@ -29,12 +29,17 @@ function containerd_deps {
   echo "github.com/containerd/containerd"
 }
 
+function idmapper_deps {
+  echo "code.cloudfoundry.org/idmapper"
+}
+
 (
   sort -u \
     <( linux_deps ) \
     <( windows_deps ) \
     <( grootfs_deps ) \
     <( runc_deps ) \
-    <( containerd_deps )
+    <( containerd_deps ) \
+    <( idmapper_deps )
 
 ) | grep -v "Sirupsen/logrus" | xargs gosub sync
