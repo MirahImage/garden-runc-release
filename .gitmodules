@@ -50,3 +50,7 @@
 	path = src/code.cloudfoundry.org/archiver
 	url = https://github.com/cloudfoundry/archiver
 	branch = master
+[submodule "src/github.com/opencontainers/runc"]
+	path = src/github.com/opencontainers/runc
+	url = https://github.com/opencontainers/runc
+	branch = master

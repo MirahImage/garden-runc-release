@@ -21,6 +21,10 @@ function grootfs_deps {
   echo "code.cloudfoundry.org/grootfs"
 }
 
+function runc_deps {
+  echo "github.com/opencontainers/runc"
+}
+
 function containerd_deps {
   echo "github.com/containerd/containerd"
 }
@@ -30,6 +34,7 @@ function containerd_deps {
     <( linux_deps ) \
     <( windows_deps ) \
     <( grootfs_deps ) \
+    <( runc_deps ) \
     <( containerd_deps )
 
 ) | grep -v "Sirupsen/logrus" | xargs gosub sync
