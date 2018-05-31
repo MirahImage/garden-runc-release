@@ -12,7 +12,6 @@ function linux_deps {
 
 function windows_deps {
   GOOS=windows gosub list \
-    -t code.cloudfoundry.org/guardian/... \
     -t code.cloudfoundry.org/garden/... \
     -t code.cloudfoundry.org/garden-integration-tests/...
 }
@@ -42,4 +41,4 @@ function idmapper_deps {
     <( containerd_deps ) \
     <( idmapper_deps )
 
-) | grep -v "Sirupsen/logrus" | xargs gosub sync
+) | xargs gosub sync

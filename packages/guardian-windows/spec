@@ -7,3 +7,14 @@ dependencies:
 files:
   - exiter.ps1
   - code.cloudfoundry.org/guardian/**/*
+
+# we are excluding these, because it is problematic to untar symlinks on windows
+# in order to list all symlinks run the following command from guardian root:
+# find . -type l -ls
+excluded_files:
+  - code.cloudfoundry.org/guardian/vendor/github.com/docker/docker/integration-cli/fixtures/https/client-cert.pem
+  - code.cloudfoundry.org/guardian/vendor/github.com/docker/docker/integration-cli/fixtures/https/server-key.pem
+  - code.cloudfoundry.org/guardian/vendor/github.com/docker/docker/integration-cli/fixtures/https/ca.pem
+  - code.cloudfoundry.org/guardian/vendor/github.com/docker/docker/integration-cli/fixtures/https/client-key.pem
+  - code.cloudfoundry.org/guardian/vendor/github.com/docker/docker/integration-cli/fixtures/https/server-cert.pem
+  - code.cloudfoundry.org/guardian/vendor/github.com/docker/docker/project/CONTRIBUTING.md
