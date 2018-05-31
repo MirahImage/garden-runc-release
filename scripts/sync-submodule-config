@@ -16,6 +16,10 @@ function windows_deps {
     -t code.cloudfoundry.org/garden-integration-tests/...
 }
 
+function guardian_deps {
+  echo "code.cloudfoundry.org/guardian"
+}
+
 function grootfs_deps {
   echo "code.cloudfoundry.org/grootfs"
 }
@@ -36,6 +40,7 @@ function idmapper_deps {
   sort -u \
     <( linux_deps ) \
     <( windows_deps ) \
+    <( guardian_deps ) \
     <( grootfs_deps ) \
     <( runc_deps ) \
     <( containerd_deps ) \
