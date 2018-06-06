@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-set -e
+mkdir -p "${BOSH_INSTALL_TARGET}/src"
 
-mkdir -p ${BOSH_INSTALL_TARGET}/src
+cp -a . "${BOSH_INSTALL_TARGET}/src/."
 
-cp -a . ${BOSH_INSTALL_TARGET}/src/.
-
-export GOROOT=$(readlink -nf /var/vcap/packages/golang)
+export GOROOT
+GOROOT="$( readlink -nf /var/vcap/packages/golang )"
 export GOPATH=$BOSH_INSTALL_TARGET
 export PATH=$GOROOT/bin:$PATH
 
@@ -17,12 +17,12 @@ go install code.cloudfoundry.org/guardian/cmd/execas
 
 pushd code.cloudfoundry.org/guardian/rundmc/nstar
   make
-  mv nstar ${BOSH_INSTALL_TARGET}/bin
+  mv nstar "${BOSH_INSTALL_TARGET}/bin"
 popd
 
 pushd code.cloudfoundry.org/guardian/cmd/init
   gcc -static -o init init.c
-  mv init ${BOSH_INSTALL_TARGET}/bin
+  mv init "${BOSH_INSTALL_TARGET}/bin"
 popd
 
-rm -rf ${BOSH_INSTALL_TARGET}/{src,pkg}
+rm -rf "${BOSH_INSTALL_TARGET}/{src,pkg}"
