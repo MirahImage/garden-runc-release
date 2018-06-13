@@ -1,0 +1,77 @@
+- type: replace
+  path: /releases/-
+  value:
+    name: cf-networking
+    version: 2.4.0
+    sha1: 0359160c1914ede4524f41d9b7cee8c2b2f00ba5
+    url: https://bosh.io/d/github.com/cloudfoundry/cf-networking-release?v=2.4.0
+
+- type: replace
+  path: /releases/-
+  value:
+    name: silk
+    version: 2.4.0
+    sha1: 9c1573ba409667df15c2f90b7a9eb9c6b1505a71
+    url: https://bosh.io/d/github.com/cloudfoundry/silk-release?v=2.4.0
+
+- type: replace
+  path: /variables?/-
+  value:
+    name: silk_ca
+    type: certificate
+
+- type: replace
+  path: /variables?/-
+  value:
+    name: silk_daemon
+    type: certificate
+
+- type: replace
+  path: /variables/-
+  value:
+    name: network_policy_ca
+    type: certificate
+
+- type: replace
+  path: /variables/-
+  value:
+    name: network_policy_client
+    type: certificate
+
+- type: replace
+  path: /instance_groups/name=garden/jobs/-
+  value:
+    name: silk-daemon
+    release: silk
+    properties:
+      ca_cert: ((silk_ca.ca))
+      client_cert: ((silk_daemon.certificate))
+      client_key: ((silk_daemon.private_key))
+
+- type: replace
+  path: /instance_groups/name=garden/jobs/-
+  value:
+    name: netmon
+    release: silk
+
+- type: replace
+  path: /instance_groups/name=garden/jobs/-
+  value:
+    name: vxlan-policy-agent
+    release: silk
+    properties:
+      ca_cert: ((network_policy_ca.certificate))
+      client_cert: ((network_policy_client.certificate))
+      client_key: ((network_policy_client.private_key))
+
+- type: replace
+  path: /instance_groups/name=garden/jobs/-
+  value:
+    name: silk-cni
+    release: silk
+
+- type: replace
+  path: /instance_groups/name=garden/jobs/-
+  value:
+    name: garden-cni
+    release: cf-networking
