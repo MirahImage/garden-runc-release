@@ -2,9 +2,11 @@
   path: /releases/-
   value:
     name: cf-networking
-    version: 2.4.0
-    sha1: 0359160c1914ede4524f41d9b7cee8c2b2f00ba5
-    url: https://bosh.io/d/github.com/cloudfoundry/cf-networking-release?v=2.4.0
+    # version: 2.4.0
+    # sha1: 0359160c1914ede4524f41d9b7cee8c2b2f00ba5
+    # url: https://bosh.io/d/github.com/cloudfoundry/cf-networking-release?v=2.4.0
+    version: latest
+    url: file://../cf-networking-release/cf-networking-local.tgz
 
 - type: replace
   path: /releases/-
