@@ -32,6 +32,10 @@ packages:
   - netplugin-shim
 
 properties:
+  garden.use_kube:
+    description: use kube!
+    default: true
+
   garden.listen_network:
     description: "Garden server connection mode (tcp or unix)."
     default: unix

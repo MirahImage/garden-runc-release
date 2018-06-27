@@ -1,5 +1,5 @@
 ---
-final_name: garden-runc
+final_name: garden-kube
 blobstore:
   provider: s3
   options:
